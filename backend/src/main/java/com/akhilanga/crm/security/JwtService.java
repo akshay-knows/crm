@@ -1,5 +1,5 @@
 package com.akhilanga.crm.security;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.akhilanga.crm.config.JwtProperties;
 import com.akhilanga.crm.domain.Role;
 import io.jsonwebtoken.Claims;
@@ -44,7 +44,7 @@ public class JwtService {
     private final JwtProperties properties;
     private final SecretKey signingKey;
     private final Clock clock;
-
+@Autowired
     public JwtService(JwtProperties properties) {
         this(properties, Clock.systemUTC());
     }
