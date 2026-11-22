@@ -807,7 +807,9 @@ installation with no administrator is unrecoverable through the product.
 
 **CORS allowlist, not a wildcard.** Explicit origins from `CORS_ALLOWED_ORIGINS`, applied only to
 `/api/**`, with credentials allowed. In production the SPA and the API share an origin behind the
-ALB, so CORS is only exercised by the dev server.
+ALB, so CORS is only exercised by the dev server. The nginx same-origin proxy omits the browser's
+`Origin` header when forwarding `/api/` requests; direct browser clients calling the API still need
+their exact origin listed in `CORS_ALLOWED_ORIGINS`.
 
 **No CSRF token, deliberately.** The session is a bearer header that a cross-site form post cannot
 set, and there is no cookie to ride. A CSRF token here would add an exchange without adding
